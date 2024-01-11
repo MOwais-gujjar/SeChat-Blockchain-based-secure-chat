@@ -1,5 +1,6 @@
 "use client";
 
+import axios from "axios";
 import Button from "@/app/components/Button";
 import Input from "@/app/components/Input/Input";
 import { useCallback, useState } from "react";
@@ -12,6 +13,8 @@ import {
 import {BsGithub, BsGoogle} from 'react-icons/bs'
 import AuthSocialButton from "./AuthSocialButton";
 import AuthMetaMaskButton from "./AuthMetaMaskButton";
+import toast from "react-hot-toast";
+import { signIn } from "next-auth/react";
 
 type Variant = "LOGIN" | "REGISTER";
 const AuthForm = () => {
@@ -42,10 +45,24 @@ const AuthForm = () => {
     setIsLoading(true);
 
     if (variant === "REGISTER") {
-      //axios Register
-    }
+      axios.post('/api/register', data)
+      .catch(() => toast.error('Something went wrong') )
+      .finally(() => setIsLoading(false))
+        }
     if (variant === "LOGIN") {
-      //NEXTAUTH SignIn
+      signIn('credentials', {
+        ...data,
+        redirect: false
+      })
+      .then((callback) => {
+        if(callback?.error){
+          toast.error('Invalid Credentials');
+        }
+        if(callback?.ok && !callback?.error){
+          toast.success('Loged In!')
+        }
+      })
+      .finally(()=> setIsLoading(false));
     }
   };
 
@@ -63,6 +80,7 @@ const AuthForm = () => {
               type="text"
               register={register}
               errors={errors}
+              Disabled={isLoading}
             />
           )}
           <Input
@@ -71,6 +89,7 @@ const AuthForm = () => {
             type="email"
             register={register}
             errors={errors}
+            Disabled={isLoading}
           />
           <Input
             id="password"
@@ -78,6 +97,7 @@ const AuthForm = () => {
             type="password"
             register={register}
             errors={errors}
+            Disabled={isLoading}
           />
           <div>
             <Button disabled={isLoading} fullWidth type="submit">

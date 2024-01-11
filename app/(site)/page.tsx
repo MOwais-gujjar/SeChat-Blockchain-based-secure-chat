@@ -19,13 +19,7 @@ const Home = () => {
         <div className="
          sm:mx-auto sm:w-full sm:max-w-md
         ">
-            <Image
-            alt='Logo'
-            width={20}
-            height={20}
-            src={Logo}
-            className=' mx-auto w-fit'
-            />
+            <h1 className=' mx-auto w-fit text-3xl font-bold'>Logo</h1>
             <h2 className=" text-2xl font-semibold text-center tracking-tight leading-tight">Sechat</h2>
         </div>
         <AuthForm />
