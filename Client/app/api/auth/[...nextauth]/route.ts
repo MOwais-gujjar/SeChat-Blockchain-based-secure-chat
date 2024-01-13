@@ -52,12 +52,13 @@ export const authOptions: AuthOptions = {
             }
         })
     ],
-    debug: process.env.NODE_ENV === 'development',
     session: {
         strategy: 'jwt'
     },
+    jwt: {
+        secret: process.env.JWT_SECRET
+      },
     secret: process.env.NEXTAUTH_SECRET,
-
 };
 
 const handler = NextAuth(authOptions);

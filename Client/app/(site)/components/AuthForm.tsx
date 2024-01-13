@@ -5,19 +5,18 @@ import Button from "@/app/components/Button";
 import Input from "@/app/components/Input/Input";
 import { useCallback, useEffect, useState } from "react";
 import {
-  FormState,
   useForm,
   FieldValues,
   SubmitHandler,
 } from "react-hook-form";
 import {BsGithub, BsGoogle} from 'react-icons/bs'
 import AuthSocialButton from "./AuthSocialButton";
-import AuthMetaMaskButton from "./AuthMetaMaskButton";
 import toast from "react-hot-toast";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 type Variant = "LOGIN" | "REGISTER";
+
 const AuthForm = () => {
   const session = useSession();
   const router = useRouter();
@@ -26,8 +25,7 @@ const AuthForm = () => {
 
   useEffect(()=> {
     if(session?.status === 'authenticated'){
-      console.log("authenticated")
-        router.push('/users');
+        router.push('chat');
         }
   }, [session?.status, router])
 
@@ -56,7 +54,7 @@ const AuthForm = () => {
 
     if (variant === "REGISTER") {
       axios.post('/api/register', data)
-      .then(()=> router.push('/users')
+      .then(()=> signIn('credentials', data)
       )
       .catch(() => toast.error('Something went wrong') )
       .finally(() => setIsLoading(false));
@@ -72,7 +70,7 @@ const AuthForm = () => {
         }
         if(callback?.ok && !callback?.error){
           toast.success('Loged In!');
-          router.push('/users')
+          router.push('chat')
         }
       })
       .finally(()=> setIsLoading(false));
@@ -164,7 +162,6 @@ const AuthForm = () => {
                 icon={BsGoogle}
                 onClick={ ()=> socialAction('google')}
             />
-            <AuthMetaMaskButton />
           </div>
           <div className="
               flex

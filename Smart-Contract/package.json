@@ -1,0 +1,17 @@
+{
+  "name": "sechat",
+  "version": "1.0.0",
+  "description": "Blockchain based secure chat application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sechat",
+    "blockchain",
+    "based",
+    "chat"
+  ],
+  "author": "Sechat",
+  "license": "ISC"
+}
