@@ -5,6 +5,7 @@ import Button from "@/app/components/Button";
 import Input from "@/app/components/Input/Input";
 import { useCallback, useEffect, useState } from "react";
 import {
+  FormState,
   useForm,
   FieldValues,
   SubmitHandler,
@@ -25,7 +26,7 @@ const AuthForm = () => {
 
   useEffect(()=> {
     if(session?.status === 'authenticated'){
-        router.push('chat');
+        router.push('users');
         }
   }, [session?.status, router])
 
@@ -70,7 +71,7 @@ const AuthForm = () => {
         }
         if(callback?.ok && !callback?.error){
           toast.success('Loged In!');
-          router.push('chat')
+          router.push('users')
         }
       })
       .finally(()=> setIsLoading(false));
