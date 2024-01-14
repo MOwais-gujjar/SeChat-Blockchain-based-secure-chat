@@ -25,14 +25,8 @@ const useRoutes = () => {
     { 
       label: 'Chat', 
       href: '/conversations', 
-      icon: IoChatboxEllipses,
-      active: pathname === '/conversations' || !!conversationId
-    },
-    { 
-      label: 'Users', 
-      href: '/users', 
-      icon: HiUsers, 
-      active: pathname === '/users'
+      icon: IoChatboxEllipses, 
+      active: pathname === '/conversations'
     },
     {
       label: 'Logout', 

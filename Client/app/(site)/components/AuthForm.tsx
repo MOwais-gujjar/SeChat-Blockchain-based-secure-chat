@@ -26,7 +26,7 @@ const AuthForm = () => {
 
   useEffect(()=> {
     if(session?.status === 'authenticated'){
-        router.push('users');
+        router.push('conversations');
         }
   }, [session?.status, router])
 
@@ -52,7 +52,7 @@ const AuthForm = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = (data: any) => {
     setIsLoading(true);
-
+// Register
     if (variant === "REGISTER") {
       axios.post('/api/register', data)
       .then(()=> signIn('credentials', data)
@@ -60,6 +60,7 @@ const AuthForm = () => {
       .catch(() => toast.error('Something went wrong') )
       .finally(() => setIsLoading(false));
     }
+    // Login
     if (variant === "LOGIN") {
       signIn('credentials', {
         ...data,
@@ -71,13 +72,14 @@ const AuthForm = () => {
         }
         if(callback?.ok && !callback?.error){
           toast.success('Loged In!');
-          router.push('users')
+          router.push('conversations')
         }
       })
       .finally(()=> setIsLoading(false));
     }
   };
 
+  // Social Actions
   const socialAction = (action: string) => {
     setIsLoading(true);
     signIn(action, {
@@ -89,7 +91,7 @@ const AuthForm = () => {
       }
       if(callback?.ok && !callback?.error){
         toast.success('Loged In!');
-        router.push('/users')
+        router.push('conversations')
       }
     })
     .finally(()=> setIsLoading(false));
