@@ -1,20 +1,19 @@
-const main = async () => {
-  const Sechat = await hre.ethers.getContractFactory("Sechat")
-  const sechat = await Transaction.deploy();
-  await sechat.deployed();
+// const { ethers } = require("hardhat");
 
-  console.log("Transaction Deployed", sechat.address)
-  }
+async function main() {
+  const [deployer] = await ethers.getSigners();
 
-const runTime = async () => {
+  console.log("Deploying Sechat contract with the account:", deployer.address);
 
-  try {
-    await main();
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
+  const Sechat = await ethers.getContractFactory("Sechat");
+  const sechat = await Sechat.deploy();
+
+  console.log("Sechat deployed to:", sechat.target);
 }
 
-runTime();
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
