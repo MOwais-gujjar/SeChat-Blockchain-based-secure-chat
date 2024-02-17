@@ -8,12 +8,13 @@ const UserList = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = () => {
-    // add friend logic
+    alert("Add Friends ")
   };
   return (
     <aside
       className="
       fixed 
+      top-16
       inset-y-0 
       pb-20
       lg:pb-0
@@ -30,7 +31,7 @@ const UserList = () => {
         <div className="flex justify-between  py-4">
           <h1
             className="
-            text-2xl 
+            text-xl 
             font-bold 
             text-neutral-800 
           "
@@ -39,9 +40,9 @@ const UserList = () => {
           </h1>
           <button
             onClick={handleSubmit}
-            className=" bg-blue-600 rounded-full w-10 h-10 py-3 px-3 hover:bg-blue-500 transition"
+            className=" bg-blue-600 rounded-full w-7 h-7 p-2 hover:bg-blue-500 transition"
           >
-            <TiPlusOutline size={18} className={" text-white text-center"} />
+            <TiPlusOutline size={13} className={" text-white"} />
           </button>
         </div>
         <UserBox />

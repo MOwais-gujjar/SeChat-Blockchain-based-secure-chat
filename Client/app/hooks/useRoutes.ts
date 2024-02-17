@@ -3,10 +3,10 @@ import { useMemo } from "react";
 
 import { HiArrowLeftOnRectangle, HiUsers } from 'react-icons/hi2';
 import { IoChatboxEllipses } from "react-icons/io5";
-import { GoHome } from "react-icons/go";
+import { GrTransaction } from "react-icons/gr";
 import { CiSettings } from "react-icons/ci";
 import { FaEthereum } from 'react-icons/fa';
-
+import { FaRobot } from "react-icons/fa6";
 
 import { signOut } from "next-auth/react";
 import useConversation from "./useConverstationId";
@@ -16,22 +16,29 @@ const useRoutes = () => {
   const { conversationId } = useConversation();
 
   const routes = useMemo(() => [
-    { 
-      label: 'Home', 
-      href: '/home', 
-      icon: GoHome,
-      active: pathname === '/conversations' || !!conversationId
-    },
+   
     { 
       label: 'Chat', 
       href: '/conversations', 
       icon: IoChatboxEllipses, 
       active: pathname === '/conversations'
     },
+    { 
+      label: 'Transaction', 
+      href: '/transaction', 
+      icon: GrTransaction,
+      active: pathname === '/transaction' || !!conversationId
+    },
+    { 
+      label: 'BOT', 
+      href: '/etheruemBot', 
+      icon: FaRobot,
+      active: pathname === '/etheruemBot' || !!conversationId
+    },
     {
       label: 'Logout', 
       onClick: () => signOut(),
-      href: '#',
+      href: '/',
       icon: HiArrowLeftOnRectangle, 
     }
   ], [pathname, conversationId]);

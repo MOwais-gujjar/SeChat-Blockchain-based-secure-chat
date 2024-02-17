@@ -1,18 +1,21 @@
-import Sidebar from "../components/Sidebar/Sidebar"
-import UserList from "./components/userList"
+import SideBar from "../components/Sidebar/SideBar";
+import Header from '../components/navigation/Navigation'
+import UserList from "./components/userList";
 
 export default async function Userslayout({
-    children
+  children,
 }: {
-   children:  React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <>
-      <Sidebar>
-    <div className=' h-full'>
-      <UserList />
-      {children}</div>
-    </Sidebar>
+    <Header />
+      <SideBar>
+        <div className=" h-full">
+          <UserList />
+          {children}
+        </div>
+      </SideBar>
     </>
-  )
+  );
 }

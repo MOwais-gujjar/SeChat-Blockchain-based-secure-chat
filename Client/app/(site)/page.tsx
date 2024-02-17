@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import React from 'react'
-import Logo from '@/public/metamask.svg'
+import logoImage from "../../public/images/logo.jpg";
 import AuthForm from './components/AuthForm'
 const Home = () => {
   return (
@@ -19,7 +19,12 @@ const Home = () => {
         <div className="
          sm:mx-auto sm:w-full sm:max-w-md
         ">
-            <h1 className=' mx-auto w-fit text-3xl font-bold'>Logo</h1>
+            <Image className=' mx-auto w-fit text-3xl font-bold rounded-lg'
+            src={logoImage}
+            alt='Sechat'
+            height={60}
+            width={60}
+            />
             <h2 className=" text-2xl font-semibold text-center tracking-tight leading-tight">Sechat</h2>
         </div>
         <AuthForm />
