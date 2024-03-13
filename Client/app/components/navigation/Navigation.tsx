@@ -1,23 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import logo from "../../../public/images/logo.jpg";
 import Button from "../Button";
+import { ethers } from "ethers";
+import Login_metamask from "./Login_metamask";
 
 const Navigation = () => {
-  const [currentAccount, setCurrentAccount] = useState();
-
-  const connectWallet = async () => {
-    const { ethereum } = window;
-    if (ethereum) {
-      const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
-      });
-      setCurrentAccount(accounts[0]);
-    } else {
-      alert("Please Connect metamask");
-    }
+  const [account, setAccount] = useState("" || undefined);
+  //Implement Metamask authetication
+  const LoadBalancing = async () => {
+    window.ethereum.on('accountChanged', async () => {
+      window.location.reload();
+    })
   };
+  useEffect(() => {
+    LoadBalancing();
+  }, []);
   return (
     <div
       className=" 
@@ -47,13 +46,8 @@ const Navigation = () => {
           Sechat
         </h1>
       </div>
-      {currentAccount ? (
-        <>
-          <p>Wallet Address</p>
-        </>
-      ) : (
-        <Button onClick={connectWallet}>Connect</Button>
-      )}
+
+      <Login_metamask account={account} setAccount={setAccount} />
     </div>
   );
 };

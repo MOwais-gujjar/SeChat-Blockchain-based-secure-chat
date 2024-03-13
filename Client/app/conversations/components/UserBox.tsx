@@ -11,7 +11,6 @@ const UserBox = () => {
 
     const handleClick = useCallback(() => {
         setIsLoading(true);
-
         //  define routes 
     }, []);
 

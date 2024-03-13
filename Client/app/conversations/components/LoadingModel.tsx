@@ -1,9 +1,12 @@
 "use client"
 import React from 'react'
+import ChatHeader from './ChatHeader'
 
 const LoadingModel = () => {
   return (
-    <div>LoadingModel</div>
+    <div className=''>
+      <ChatHeader />
+    </div>
   )
 }
 

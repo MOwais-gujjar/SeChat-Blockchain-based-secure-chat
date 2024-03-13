@@ -3,10 +3,12 @@ import { useMemo } from "react";
 
 import { HiArrowLeftOnRectangle, HiUsers } from 'react-icons/hi2';
 import { IoChatboxEllipses } from "react-icons/io5";
-import { GrTransaction } from "react-icons/gr";
+import { TbUserFilled  } from "react-icons/tb";
 import { CiSettings } from "react-icons/ci";
 import { FaEthereum } from 'react-icons/fa';
-import { FaRobot } from "react-icons/fa6";
+import { FiPhoneCall  } from "react-icons/fi";
+import { HiMiniUserGroup } from "react-icons/hi2";
+import {MdOutlineContactSupport } from 'react-icons/md'
 
 import { signOut } from "next-auth/react";
 import useConversation from "./useConverstationId";
@@ -24,15 +26,27 @@ const useRoutes = () => {
       active: pathname === '/conversations'
     },
     { 
-      label: 'Transaction', 
-      href: '/transaction', 
-      icon: GrTransaction,
+      label: 'Friends', 
+      href: '/friends', 
+      icon: TbUserFilled ,
       active: pathname === '/transaction' || !!conversationId
     },
     { 
-      label: 'BOT', 
-      href: '/etheruemBot', 
-      icon: FaRobot,
+      label: 'Calls', 
+      href: '/calls', 
+      icon: FiPhoneCall,
+      active: pathname === '/etheruemBot' || !!conversationId
+    },
+    { 
+      label: 'Communities', 
+      href: '/communities', 
+      icon: HiMiniUserGroup,
+      active: pathname === '/etheruemBot' || !!conversationId
+    },
+    { 
+      label: 'Support', 
+      href: '/support', 
+      icon: MdOutlineContactSupport ,
       active: pathname === '/etheruemBot' || !!conversationId
     },
     {
@@ -45,8 +59,8 @@ const useRoutes = () => {
 
   const authRoutes = useMemo(() => [
     { 
-      label: 'wallet', 
-      href: '/wallet', 
+      label: 'Eth_Server', 
+      href: '/ethserver', 
       icon: FaEthereum,
       active: pathname === '/wallet' || !!conversationId
     },

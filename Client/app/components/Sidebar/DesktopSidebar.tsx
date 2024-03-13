@@ -20,8 +20,8 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
   return (
     <div
       className="
-        lg:flex lg:fixed lg:inset-y-0 lg:left-0 lg:top-16 lg:h-auto lg:z-20 lg:w-20 lg:px-6 lg:overflow-auto lg:bg-white
-        lg:border-r-[1px] lg:pb-4 lg:flex-col justify-between
+        lg:flex lg:fixed lg:inset-y-0 lg:left-0 lg:top-0 lg:h-auto lg:z-20 lg:w-24 lg:px-6 lg:overflow-auto lg:bg-white
+        lg:border-r-[1px] lg:pb-4 lg:gap-y-6 lg:flex-col justify-between
     "
     >
       <nav
@@ -29,7 +29,16 @@ const DesktopSidebar: React.FC<DesktopSidebarProps> = ({ currentUser }) => {
         mt-4 flex flex-col justify-between
         "
       >
-        {/* <Image src={logo} width={40} height={40} alt="sechat" /> */}
+        <div className=" my-2">
+          <Image
+            src={logo}
+            alt="Sechat"
+            width={40}
+            height={40}
+            className=" rounded-lg "
+          />
+          {/* <p className=" text-center text-sm font-serif font-medium ">sechat</p> */}
+        </div>{" "}
         <ul
           role="list"
           className="
